@@ -26,12 +26,12 @@ app.post('/register', function(req, res){
 		hashcode : "newHash",
 		register_date : Date.now()
 	});
-	//user.hashcode = user.hashcode + user.register_date.toString()
+	user.hashcode = user.hashcode + user.register_date.toString().replace(/\s+/g, '');
 	user.save(function(err, post, count){
 		if(err){
 			console.log(err)
 			res.json({
-				success : 'false',
+				success : false,
 				error : 'User already exists.'
 			});
 			return;
