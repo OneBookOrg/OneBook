@@ -23,23 +23,33 @@ app.get('/', function(req, res){
 app.post('/register', function(req, res){
 	var user = new User ({
 		username : req.body.username,
-		hashcode : "newHash",
+		password : req.body.password,
+		hashcode : "",
 		register_date : Date.now()
 	});
-	user.hashcode = user.hashcode + user.register_date.toString().replace(/\s+/g, '');
-	user.save(function(err, post, count){
-		if(err){
-			console.log(err)
+
+	tempSalt = user.register_date.toString().replace(/\s+/g, '');
+
+	hash(user.password, tempSalt, function(err, hash){
+		if(err) return err;
+		user.hashcode = hash.toString('hex');
+		console.log(user.hashcode);
+
+		user.save(function(err, post, count){
+			if(err){
+				console.log(err)
+				res.json({
+					success : false,
+					error : 'User already exists.'
+				});
+				return;
+			}
 			res.json({
-				success : false,
-				error : 'User already exists.'
+				success : true
 			});
-			return;
-		}
-		res.json({
-			success : true
 		});
 	});
+
 });
 
 
