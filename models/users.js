@@ -6,6 +6,7 @@ var userSchema = new Schema ({
 		type : String,
 		unique : true
 	},
+	phone_number : Number,
 	hashcode : String,
 	//Using register_date as salt val
 	register_date : Date
