@@ -6,8 +6,11 @@ var fs = require('fs')
 var bodyParser = require('body-parser')
 var hash = require('./pass').hash
 
+//Models
 require('./models/users.js');
+require('./models/organizations.js');
 var User = mongoose.model('users');
+var Org = mongoose.model('organizations');
 
 var app = express();
 
@@ -23,19 +26,18 @@ app.get('/', function(req, res){
 app.post('/register', function(req, res){
 	var user = new User ({
 		username : req.body.username,
-		password : req.body.password,
 		hashcode : "",
+		phone_number : req.body.phone_number, //Change phone numbers to a default format easy for searching
 		register_date : Date.now()
 	});
-
+	//Uses the users registration date as their salt value
 	tempSalt = user.register_date.toString().replace(/\s+/g, '');
 
-	hash(user.password, tempSalt, function(err, hash){
+	hash(req.body.password, tempSalt, function(err, hash){
 		if(err) return err;
 		user.hashcode = hash.toString('hex');
-		console.log(user.hashcode);
 
-		user.save(function(err, post, count){
+		user.save(function(err){
 			if(err){
 				console.log(err)
 				res.json({
@@ -49,6 +51,32 @@ app.post('/register', function(req, res){
 			});
 		});
 	});
+
+});
+
+
+app.post('/createOrg', function(req, res){
+	var org = new Org ({
+		orgname : req.body.orgname
+	});
+
+	org.save(function(err){
+		if(err){
+			console.log(err);
+			res.json({
+				success : false,
+				error : 'Organization already exists'
+			});
+			return;
+		}
+		res.json({
+			success : true
+		});
+	});
+});
+
+
+app.get('/login', function(req, res){
 
 });
 
