@@ -29,10 +29,10 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="/login" method="POST">
         <h2 class="form-signin-heading">Please Sign In</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="email" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
@@ -41,10 +41,10 @@
           </label>
         </div>
         
-        <div class="btn-group-sm">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
-        </div>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinButon">Sign In</button>
+        <button onclick="location.href = 'signup.html';" id="signupButton" class="btn btn-lg btn-primary btn-block" >Sign Up</button>
+        
 
 
         
