@@ -17,7 +17,8 @@
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../js/signin.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -29,12 +30,12 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/login" method="POST">
+      <form class="form-signin" name="form-signin" action="" method="POST">
         <h2 class="form-signin-heading">Please Sign In</h2>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="email" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <input type="username" id='username' name="username" value="" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id='password' name="password" value="" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -42,7 +43,7 @@
         </div>
         
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinButon">Sign In</button>
+        <input class="btn btn-lg btn-primary btn-block" type="button" id="signinSubmit" value="Sign In"/>
         <button onclick="location.href = 'signup.html';" id="signupButton" class="btn btn-lg btn-primary btn-block" >Sign Up</button>
         
 
