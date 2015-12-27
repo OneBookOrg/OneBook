@@ -73,6 +73,7 @@ app.post('/register', function(req, res){
 				});
 				return;
 			}
+			console.log(user + " Has been successfully registered")
 			res.json({
 				success : true
 			});
