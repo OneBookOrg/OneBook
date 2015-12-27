@@ -5,7 +5,8 @@ var organizationSchema = new Schema ({
 	orgname : {
 		type :String,
 		unique : true
-	}
+	},
+	memebers : []
 });
 
 mongoose.model('organizations', organizationSchema);
