@@ -138,6 +138,27 @@ app.post('/addUserToOrg', function(req, res){
 
 });
 
+
+//Need to change this to get user from the current session IMPORTANT.
+//NEED TO FIGURE OUT MONGO SESSION STORING. 
+app.get('/userOrgs/:username', function(req, res){
+	//To get this data make the request http://localhost:8000/userOrgs/'username' replacing username
+	User.findOne( {'username' : req.params.username}, function(err, user){
+		if(err){
+			console.log("Error, user does not exist. " + err);
+			res.json({
+				success : false
+			});
+			return;
+		}
+		res.json({
+			success : true,
+			userOrgs : user.userOrgs
+		});
+		return;
+	});
+});
+
 app.get('/login', function(req, res){
 
 });
