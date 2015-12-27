@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 var hash = require('./pass').hash
 
 var app = express();
+app.use(express.static('site'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -27,13 +28,13 @@ app.get('/', function(req, res){
 
 function authenticate (name, pass, fn){
 	
-	User.find( {"username" : name}, function(err, user){
+	User.findOne( {'username' : name}, function(err, user){
 		if(err){
 			console.log("Error, user does not exist. " + err);
 			return fn(new Error('Cannot find user.'));
 		}
 		//Uses the users registration date as their salt value
-		tempSalt = user.register_date.toString().replace(/\s+/g, '');	
+		tempSalt = user.register_date.toString().replace(/\s+/g, '');
 		
 		hash(pass, tempSalt, function(err, hash){
 			if(err) 
@@ -81,9 +82,10 @@ app.post('/register', function(req, res){
 });
 
 app.post('/login', function(req, res){
+
 	authenticate(req.body.username, req.body.password, function(err, user){
 		if(user){
-			console.log(user + " was successfully logged in!");
+			console.log(user.username + " was successfully logged in!");
 			res.json({
 				success : true
 			});
