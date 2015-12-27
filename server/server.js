@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-require('./models/users.js');
-require('./models/organizations.js');
+require('../models/users.js');
+require('../models/organizations.js');
 var User = mongoose.model('users');
 var Org = mongoose.model('organizations');
 
@@ -115,6 +115,28 @@ app.post('/createOrg', function(req, res){
 	});
 });
 
+app.post('/addUserToOrg', function(req, res){
+	//Need to change this to get user from the current session IMPORTANT
+	User.update(
+		{username : req.body.username},
+		//Need to change this to search for valid organization prior to adding to set
+		{$addToSet : {userOrgs : {orgname : req.body.orgName}}},
+		function(err, result){
+			
+			if(err){
+				console.log("ERROR " + err)
+				res.json({
+					success : false
+				});
+				return;
+			}
+			res.json({
+				success : true
+			})
+		}
+	)
+
+});
 
 app.get('/login', function(req, res){
 
