@@ -9,14 +9,17 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <link href='css/bootstrap.min.css' rel='stylesheet'>
+
     <title>OneBook Sign Up</title>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/signin-signup.css" rel="stylesheet">
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./js/signup.js" type="text/javascript"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,10 +32,12 @@
 
     <div class="container">
 
+      <button class="btn btn-primary" onclick="goBack()">Sign In</button>
+
       <form class="form-signin" action="/register" method="POST">
         <h2 class="form-signin-heading">Please Sign Up</h2>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="email" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPhoneNum" class="sr-only">Phone Number</label>
         <input type="phoneNum" id="inputPhoneNum" class="form-control" placeholder="Phone Number" required>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -44,7 +49,7 @@
         </div>
         
         <!--Need to add a back button to get back to login-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <input class="btn btn-lg btn-primary btn-block" type="button" id="signupSubmit" value="Sign Up"/>
 
       
         
@@ -57,5 +62,10 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src='js/bootstrap.min.js'></script>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>
