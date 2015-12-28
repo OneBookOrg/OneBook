@@ -18,7 +18,8 @@ app.use(session({
 	secret : 'shhh, secret',
 	resave : true,
 	saveUninitialized : true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 604800000 }
 }));
 
 app.use(bodyParser.json());
