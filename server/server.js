@@ -5,9 +5,21 @@ var path = require('path')
 var fs = require('fs')
 var bodyParser = require('body-parser')
 var hash = require('./pass').hash
-
+var cookieParser = require('cookie-parser')
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 var app = express();
 app.use(express.static('site'));
+
+
+mongoose.connect('mongodb://localhost/OneBookDB')
+
+app.use(session({
+	secret : 'shhh, secret',
+	resave : true,
+	saveUninitialized : true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -18,8 +30,6 @@ require('../models/users.js');
 require('../models/organizations.js');
 var User = mongoose.model('users');
 var Org = mongoose.model('organizations');
-
-
 
 
 app.get('/', function(req, res){
@@ -43,10 +53,7 @@ function authenticate (name, pass, fn){
 				return fn(null, user);
 		});
 	});
-	
-	
-
-	fn(new Error('User hashcodes do not match. Invalid Password'));
+	//fn(new Error('User hashcodes do not match. Invalid Password'));
 } 
 
 app.post('/register', function(req, res){
@@ -73,10 +80,14 @@ app.post('/register', function(req, res){
 				});
 				return;
 			}
-			console.log(user + " Has been successfully registered")
-			res.json({
-				success : true
-			});
+			req.session.regenerate(function(){
+	            req.session.user = user
+	            console.log(user.username + " Has been successfully registered")
+				res.json({
+					success : true
+				});
+        	});
+			
 		});
 	});
 
@@ -86,10 +97,21 @@ app.post('/login', function(req, res){
 
 	authenticate(req.body.username, req.body.password, function(err, user){
 		if(user){
-			console.log(user.username + " was successfully logged in!");
-			res.json({
-				success : true
-			});
+			req.session.regenerate(function(){
+		        req.session.user = user;
+		        res.json({
+		        	success : true
+		        });
+		        console.log("Auth success for '%s'", user.username);
+      		});
+		}
+		else{
+			req.session.error = 'Authentication failed, please check your '
+        + ' username and password.';
+        	res.json({
+        		success : false,
+        		errMessage : 'Authentication failed'
+        	});
 		}
 	});
 })
@@ -109,6 +131,7 @@ app.post('/createOrg', function(req, res){
 			});
 			return;
 		}
+
 		res.json({
 			success : true
 		});
@@ -118,7 +141,7 @@ app.post('/createOrg', function(req, res){
 app.post('/addUserToOrg', function(req, res){
 	//Need to change this to get user from the current session IMPORTANT
 	User.update(
-		{username : req.body.username},
+		{username : req.session.user.username},
 		//Need to change this to search for valid organization prior to adding to set
 		{$addToSet : {userOrgs : {orgname : req.body.orgName}}},
 		function(err, result){
@@ -168,7 +191,7 @@ app.get('/login', function(req, res){
 
 var portNumber = 8000;
 app.listen(portNumber);
-mongoose.connect('mongodb://localhost/OneBookDB')
+
 
 console.log("OneBook server is listening on port " + portNumber)
 
