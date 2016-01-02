@@ -9,10 +9,10 @@ var cookieParser = require('cookie-parser')
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 var app = express();
-app.use(express.static('site'));
+app.use(express.static('../site'));
 
 
-mongoose.connect('mongodb://localhost/OneBookDB')
+mongoose.connect('mongodb://localhost/OneBookDB');
 
 app.use(session({
 	secret : 'shhh, secret',
