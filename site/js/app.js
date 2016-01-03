@@ -1,7 +1,7 @@
 
 //
 (function(){
-	var app = angular.module('Orgs', []);
+	var app = angular.module('userOrgs', []);
 	app.controller('userOrgController', function($scope, $http){
 	
 		$http.get("/userOrgs")
