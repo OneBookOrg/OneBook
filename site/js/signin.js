@@ -7,8 +7,12 @@ $(document).ready(function() {
           {
             username : $("#username").val(),
             password : $("#password").val()
+          },
+          function(){
+          	window.location.replace("/blank.html");
           }
        );
+
   
     });
 
