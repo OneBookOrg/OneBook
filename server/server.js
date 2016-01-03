@@ -123,7 +123,8 @@ app.post('/login', function(req, res){
 
 app.post('/createOrg', function(req, res){
 	var org = new Org ({
-		orgname : req.body.orgname
+		orgname : req.body.orgname,
+		members : [req.session.user.username]
 	});
 
 	org.save(function(err){
@@ -136,32 +137,67 @@ app.post('/createOrg', function(req, res){
 			return;
 		}
 
+
+		User.update({username : req.session.user.username}, {$addToSet : {userOrgs : org}}, function(err, result){
+			if(err){
+				console.log("ERROR updating user info. " + err);
+				res.json({
+					success : false,
+					errMessage : "Could not update user."
+				});
+				return;
+			}
+		});
+
 		res.json({
 			success : true
 		});
+		return;
 	});
 });
 
 app.post('/addUserToOrg', function(req, res){
-	//Need to change this to get user from the current session IMPORTANT
-	User.update(
-		{username : req.session.user.username},
-		//Need to change this to search for valid organization prior to adding to set
-		{$addToSet : {userOrgs : {orgname : req.body.orgName}}},
-		function(err, result){
-			
-			if(err){
-				console.log("ERROR " + err)
-				res.json({
-					success : false
-				});
-				return;
-			}
+	
+	Org.findOne({orgname : req.body.orgName}, function(err, org){
+		if(err){
+			console.log("ERROR " + err);
 			res.json({
-				success : true
-			})
+				success : false,
+				errMessage : "No organization by the name " + req.body.orgName
+			});
+			return;
 		}
-	)
+		else{
+			Org.update({orgname : org.orgname}, {$addToSet : {members : req.session.user.username}}, function(err){
+				if(err){
+					console.log("ERROR updating organization member "+ err);
+					res.json({
+						success : false,
+						errMessage : "ERROR updating organization member."
+					});
+					return;
+				}
+				else{
+					
+					User.update({username : req.session.user.username}, {$addToSet : {userOrgs : org}}, function(err, result){
+						if(err){
+							console.log("ERROR updating user info. " + err);
+							res.json({
+								success : false,
+								errMessage : "Could not update user."
+							});
+							return;
+						}
+						res.json({
+							success : true
+						});
+					});
+				}
+			});
+	
+		}
+
+	});
 
 });
 
@@ -170,35 +206,44 @@ app.get('/userOrgs', function(req, res){
 	
 	console.log('Getting orgs for ' + req.session.user.username)
 
-	if(debug){
-		
-		User.findOne( {'username' : req.params.username}, function(err, user){
-			if(err){
-				console.log("Error, user does not exist. " + err);
-				res.json({
-					success : false
-				});
-				return;
-			}
+	
+	Org.find({'members' : req.session.user.username}, function(err, orgs){
+		if(err){
+			console.log("Error, user does not exist. " + err);
 			res.json({
-				success : true,
-				userOrgs : user.userOrgs
+				success : false
 			});
 			return;
+		}
+		res.json({
+			success : true,
+			userOrgs : orgs
 		});
-	}
-
-	res.json({
-		success : true,
-		userOrgs : req.session.user.userOrgs
+		return;
 	});
-	return;
 
 
 });
 
 app.get('/login', function(req, res){
 
+});
+
+app.get('/logout', function(req, res){
+  // destroy the user's session to log them out
+  // will be re-created next request
+  req.session.destroy(function(err){
+  	if(err){
+  		res.json({
+  			success : false
+  		});
+  		return;
+  	}
+  	res.json({
+  		success : true
+  	});
+
+  });
 });
 
 
