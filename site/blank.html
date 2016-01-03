@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="userOrgs">
   <head>
     <title>OneBook</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -134,15 +134,15 @@
                     </div>
                     <div class='box-content box-no-padding'>
                       <div class='responsive-table'>
-                        <div class='scrollable-area'>
+                        <div class='scrollable-area' ng-controller='userOrgController as userOrgCtrl'>
                           <table class='table' style='margin-bottom:0;'>
                             <thead>
                               <tr>
                                 <th>
-                                  Name
+                                  Organization Name
                                 </th>
                                 <th>
-                                  E-mail
+                                  # Members
                                 </th>
                                 <th>
                                   Status
@@ -150,78 +150,10 @@
                                 <th></th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat='org in orgs'>
                               <tr>
-                                <td>Zelma Langosh</td>
-                                <td>berta@hotmail.com</td>
-                                <td>
-                                  <span class='label label-important'>Important</span>
-                                </td>
-                                <td>
-                                  <div class='text-right'>
-                                    <a class='btn btn-success btn-xs' href='#'>
-                                      <i class='icon-ok'></i>
-                                    </a>
-                                    <a class='btn btn-danger btn-xs' href='#'>
-                                      <i class='icon-remove'></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Jackson Yundt</td>
-                                <td>seth@yahoo.com</td>
-                                <td>
-                                  <span class='label label-success'>Success</span>
-                                </td>
-                                <td>
-                                  <div class='text-right'>
-                                    <a class='btn btn-success btn-xs' href='#'>
-                                      <i class='icon-ok'></i>
-                                    </a>
-                                    <a class='btn btn-danger btn-xs' href='#'>
-                                      <i class='icon-remove'></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Rey Fadel</td>
-                                <td>macey@yahoo.com</td>
-                                <td>
-                                  <span class='label label-warning'>Warning</span>
-                                </td>
-                                <td>
-                                  <div class='text-right'>
-                                    <a class='btn btn-success btn-xs' href='#'>
-                                      <i class='icon-ok'></i>
-                                    </a>
-                                    <a class='btn btn-danger btn-xs' href='#'>
-                                      <i class='icon-remove'></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Jaquelin Koelpin</td>
-                                <td>celia@hotmail.com</td>
-                                <td>
-                                  <span class='label label-success'>Success</span>
-                                </td>
-                                <td>
-                                  <div class='text-right'>
-                                    <a class='btn btn-success btn-xs' href='#'>
-                                      <i class='icon-ok'></i>
-                                    </a>
-                                    <a class='btn btn-danger btn-xs' href='#'>
-                                      <i class='icon-remove'></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Marco Bogisich</td>
-                                <td>cullen@yahoo.com</td>
+                                <td>{{org.orgname}}</td>
+                                <td>{{org.members.length}}</td>
                                 <td>
                                   <span class='label label-important'>Important</span>
                                 </td>
@@ -264,6 +196,10 @@
         </div>
       </section>
     </div>
+
+
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
     <!-- / jquery [required] -->
     <script src="assets/javascripts/jquery/jquery.min.js" type="text/javascript"></script>
     <!-- / jquery mobile (for touch events) -->
