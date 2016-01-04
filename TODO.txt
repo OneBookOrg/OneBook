@@ -1,0 +1,7 @@
+- Create popover when a user attempts to login but provides incorrect credentials
+- Create page populated with Each use in an organization and their information.
+	- If a user is clicked on their information is blown up large as a popover.
+	- If a user clicks on their own information it gives them the option to edit their info.
+	- Phone number, email (maybe class schedule)
+- Create user_profile.html 
+
