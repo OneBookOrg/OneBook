@@ -201,6 +201,25 @@ app.post('/addUserToOrg', function(req, res){
 
 });
 
+app.get('/userInfo', function(req, res){
+	User.findOne( {'username' : req.session.user.username}, function(err, user){
+		if(err){
+			console.log("Error, user does not exist. " + err);
+			res.json({
+				success : false,
+				errMessage : "Could not find user information."
+			});
+			return;
+		}
+		
+		res.json({
+			success : true,
+			user : user
+		});
+		
+	});
+});
+
 
 app.get('/userOrgs', function(req, res){
 	
