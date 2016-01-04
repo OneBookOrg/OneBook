@@ -10,4 +10,15 @@
         	});
         
 	});
+
+	app.controller('userProfileController', function($scope, $http){
+		
+		$http.get("/userInfo")
+    		.then(function(response) {
+    			console.log(response.data.user);
+          		$scope.user = response.data.user;
+        	});
+	});
+
+
 })();

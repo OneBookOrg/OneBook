@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="userOrgs">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href='css/bootstrap.min.css' rel='stylesheet' />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script src='js/bootstrap.min.js'></script>
+    
+    
+  </head>
+
+  <body ng-controller="userOrgController as userOrgCtrl">
+    <ul class="list-group">
+      <h1> Organzations </h1>
+      <li class="list-group-item" ng-repeat='org in orgs'>
+        {{org}}
+      </li>
+    </ul>
+ 
+  </body>
+</html>
