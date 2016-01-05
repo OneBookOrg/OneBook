@@ -11,7 +11,6 @@ const MongoStore = require('connect-mongo')(session);
 var app = express();
 app.use(express.static('../site'));
 
-
 var debug = false;
 
 
@@ -59,6 +58,22 @@ function authenticate (name, pass, fn){
 	});
 	//fn(new Error('User hashcodes do not match. Invalid Password'));
 } 
+
+function restrict(req, res, next) {
+  if (req.session.user) {
+    next();
+  } 
+  else {
+  	console.log("SHOULD REDIRECT");
+  	res.json({
+  		success : false,
+  		errMessage : "Access Denied.",
+  		redirect : "/index.html"
+  	})
+    //res.json({error_message: "Access denied!", cookieValid : false});
+    return;
+  }
+}
 
 app.post('/register', function(req, res){
 	var user = new User ({
@@ -121,7 +136,7 @@ app.post('/login', function(req, res){
 })
 
 
-app.post('/createOrg', function(req, res){
+app.post('/createOrg', restrict, function(req, res){
 	var org = new Org ({
 		orgname : req.body.orgname,
 		members : [req.session.user.username]
@@ -156,7 +171,7 @@ app.post('/createOrg', function(req, res){
 	});
 });
 
-app.post('/addUserToOrg', function(req, res){
+app.post('/addUserToOrg', restrict, function(req, res){
 	
 	Org.findOne({orgname : req.body.orgName}, function(err, org){
 		if(err){
@@ -201,7 +216,7 @@ app.post('/addUserToOrg', function(req, res){
 
 });
 
-app.get('/userInfo', function(req, res){
+app.get('/userInfo', restrict, function(req, res){
 	User.findOne( {'username' : req.session.user.username}, function(err, user){
 		if(err){
 			console.log("Error, user does not exist. " + err);
@@ -221,7 +236,7 @@ app.get('/userInfo', function(req, res){
 });
 
 
-app.get('/userOrgs', function(req, res){
+app.get('/userOrgs', restrict, function(req, res){
 	
 	console.log('Getting orgs for ' + req.session.user.username)
 
