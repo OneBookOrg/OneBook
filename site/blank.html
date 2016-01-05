@@ -5,7 +5,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
     <meta content='Flat administration template for Twitter Bootstrap. Twitter Bootstrap 3 template with Ruby on Rails support.' name='description'>
-    <link href='assets/images/meta_icons/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href='assets/images/meta_icons/OB.ico' rel='shortcut icon' type='image/x-icon'>
     <link href='assets/images/meta_icons/apple-touch-icon.png' rel='apple-touch-icon-precomposed'>
     <link href='assets/images/meta_icons/apple-touch-icon-57x57.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
     <link href='assets/images/meta_icons/apple-touch-icon-72x72.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
@@ -21,7 +21,7 @@
     <!-- / coloring file [optional] (if you are going to use custom contrast color) -->
     <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
     <!-- / demo file [not required!] -->
-    <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/stylesheets/demo.css" media="all" reluser="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
       <script src="assets/javascripts/ie/html5shiv.js" type="text/javascript"></script>
       <script src="assets/javascripts/ie/respond.min.js" type="text/javascript"></script>
@@ -58,7 +58,7 @@
               </li>
               <li class='divider'></li>
               <li>
-                <a href='index.html'>
+                <a href='index.html' ng-click='userProfCtrl.signOut()'>
                   <i class='icon-signout'></i>
                   Sign out
                 </a>
