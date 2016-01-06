@@ -2,9 +2,15 @@ OneBook TODO List
 
 
 - Create popover when a user attempts to login but provides incorrect credentials
-- Create page populated with Each use in an organization and their information.
+
+- When a user signs up it should redirect them to a user profile page which allows them to update all their information. (Phone number -required, email-optional, class schedule-optional, If you think of anything else that would be beneficial to add go ahead)
+
+- Add a search_page.html that users can go to in order to search for organizations they want to join.
+
+
+- When a user clicks on the blue check box next to the organization on their blank.html page it should take them to a page populated with each user in that organization and their information (prob just gonna look like a spreadsheet for now)
 	- If a user is clicked on their information is blown up large as a popover.
-	- If a user clicks on their own information it gives them the option to edit their info.
+	- If a user clicks on their own information it gives them the option to edit 	  their info.
 	- Phone number, email (class schedule but need to change user schema to fit)
-- Create user_profile.html 
+
 
