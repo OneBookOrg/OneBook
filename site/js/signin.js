@@ -3,7 +3,7 @@ var signin = {
       signin.authenticate();
    },
 
- function authenticate(){
+ authenticate: function(){
    $("#signinSubmit").on('click',function(){
    
       var usernameInput = $("#username").val();
@@ -16,15 +16,15 @@ var signin = {
               data: {username:usernameInput, password:passwordInput},
               success:function(){
                 window.location.replace("/blank.html");
-              }
+              },
               error:function(){
-                errorMessage();
+                signin.errorMessage();
               }
           });
     }
   },
 
-  function errorMessage(){
+  errorMessage: function(){
     var appendString =   "<div class='alert alert-danger alert-dismissable'>"+
                                      "   <a class='close' data-dismiss='alert' href='#'>&times;"+
                             +"</a>"+
