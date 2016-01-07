@@ -42,10 +42,10 @@ app.get('/', function(req, res){
 function authenticate (name, pass, fn){
 	
 	User.findOne( {'username' : name}, function(err, user){
-		if(err){
+		if(!user){
 			console.log("INSIDE ERR");
 			console.log("Error, user does not exist. " + err);
-			return fn(new Error('Cannot find user.'));
+			return fn(new Error('Cannot find user.'), null);
 		}
 		//Uses the users registration date as their salt value
 		else{
