@@ -43,8 +43,7 @@ function authenticate (name, pass, fn){
 	
 	User.findOne( {'username' : name}, function(err, user){
 		if(!user){
-			console.log("INSIDE ERR");
-			console.log("Error, user does not exist. " + err);
+			console.log("Error, user does not exist.");
 			return fn(new Error('Cannot find user.'), null);
 		}
 		//Uses the users registration date as their salt value
@@ -97,7 +96,6 @@ app.post('/register', function(req, res){
 
 		user.save(function(err){
 			if(err){
-				console.log(err)
 				res.json({
 					success : false,
 					error : 'User already exists.'
@@ -150,7 +148,6 @@ app.post('/createOrg', restrict, function(req, res){
 
 	org.save(function(err){
 		if(err){
-			console.log(err);
 			res.json({
 				success : false,
 				error : 'Organization already exists'
@@ -181,7 +178,6 @@ app.post('/addUserToOrg', restrict, function(req, res){
 	
 	Org.findOne({orgname : req.body.orgName}, function(err, org){
 		if(err){
-			console.log("ERROR " + err);
 			res.json({
 				success : false,
 				errMessage : "No organization by the name " + req.body.orgName
