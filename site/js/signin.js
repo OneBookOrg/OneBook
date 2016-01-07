@@ -8,14 +8,22 @@ $(document).ready(function() {
             window.location.replace("/blank.html");
           }
           else{
-            alert("Login Failed. Make sure your username and password are correct.");
+            addError(); 
+
           }
        })
         
-
         
     });
-
 });
 
+function addError(){
+
+    var appendString =   '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                "<strong>Error:</strong> Username or Password provided was invalid. Please try again."+
+                                    '</div>';
+   $("#error").append(appendString);
+  
+}
 
