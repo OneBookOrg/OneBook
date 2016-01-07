@@ -43,18 +43,24 @@ function authenticate (name, pass, fn){
 	
 	User.findOne( {'username' : name}, function(err, user){
 		if(err){
+			console.log("INSIDE ERR");
 			console.log("Error, user does not exist. " + err);
 			return fn(new Error('Cannot find user.'));
 		}
 		//Uses the users registration date as their salt value
-		tempSalt = user.register_date.toString().replace(/\s+/g, '');
-		
-		hash(pass, tempSalt, function(err, hash){
-			if(err) 
-				return fn(err, null);
-			if(hash.toString('hex') == user.hashcode)
-				return fn(null, user);
-		});
+		else{
+			tempSalt = user.register_date.toString().replace(/\s+/g, '');
+			hash(pass, tempSalt, function(err, hash){
+
+				if(err) 
+					return fn(err, null);
+				if(hash.toString('hex') == user.hashcode)
+					return fn(null, user);
+				else{
+					return fn(err, null);
+				}
+			});
+		}
 	});
 	//fn(new Error('User hashcodes do not match. Invalid Password'));
 } 
@@ -64,7 +70,6 @@ function restrict(req, res, next) {
     next();
   } 
   else {
-  	console.log("SHOULD REDIRECT");
   	res.json({
   		success : false,
   		errMessage : "Access Denied.",
@@ -131,6 +136,7 @@ app.post('/login', function(req, res){
         		success : false,
         		errMessage : 'Authentication failed'
         	});
+        	return;
 		}
 	});
 })
