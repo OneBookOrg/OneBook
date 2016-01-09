@@ -29,8 +29,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-require('../models/users.js');
-require('../models/organizations.js');
+require(__dirname+ '/models/users.js');
+require(__dirname+'/models/organizations.js');
 var User = mongoose.model('users');
 var Org = mongoose.model('organizations');
 
@@ -134,7 +134,7 @@ app.post('/login', function(req, res){
         		success : false,
         		errMessage : 'Authentication failed'
         	});
-        	return;
+        	//return;
 		}
 	});
 })
