@@ -276,7 +276,8 @@ app.get('/logout', function(req, res){
   		return;
   	}
   	res.json({
-  		success : true
+  		success : true,
+  		redirect : '/index.html'
   	});
 
   });
