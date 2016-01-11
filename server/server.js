@@ -237,6 +237,23 @@ app.get('/userInfo', restrict, function(req, res){
 	});
 });
 
+app.get('/orgInfo', function(req, res){
+	Org.findOne({'orgname' : req.params.orgname}, function(err, org){
+		if(err){
+			console.log("Error org does not exist. "+ err);
+			res.json({
+				success : false,
+				errMessage : "Could not find organization."
+			});
+			return;
+		}
+		res.json({
+			success : true,
+			org : org
+		});
+	});
+});
+
 
 app.get('/userOrgs', restrict, function(req, res){
 	
