@@ -30,18 +30,20 @@
 
   <body>
 
-    <div class="container">
-
-      <button class="btn btn-primary" onclick="goBack()">Sign In</button>
-
+    <div class="container-fluid">
       <form class="form-signin" action="/register" method="POST">
+        <h3 class='form-top-option'><a onclick="goBack()">SIGN IN</a></h3>
+        <h3 class='form-top-option'>SIGN UP</h3>
         <h2 class="form-signin-heading">Please Sign Up</h2>
+        <h4 class="form-control-title">USERNAME</h4>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <input type="username" id="inputUsername" class="form-control" required autofocus>
+        <h4 class="form-control-title">PHONE NUMBER</h4>
         <label for="inputPhoneNum" class="sr-only">Phone Number</label>
-        <input type="phoneNum" id="inputPhoneNum" class="form-control" placeholder="Phone Number" required>
+        <input type="phoneNum" id="inputPhoneNum" class="form-control" required>
+        <h4 class="form-control-title">PASSWORD</h4>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" class="form-control" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -49,7 +51,7 @@
         </div>
         
         <!--Need to add a back button to get back to login-->
-        <input class="btn btn-lg btn-primary btn-block" type="button" id="signupSubmit" value="Sign Up"/>
+        <input class="btn btn-lg btn-primary btn-block" type="button" id="signupSubmit" value="SIGN UP"/>
 
       
         
