@@ -15,7 +15,7 @@
       <div class="nav row">
         <div class="member">
           <ul class="nav">
-            <li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle"><img width="23" height="23" alt="" src="style/imgs/avatar.jpg"><span {{user.username}} class="user-name"></span><b class="caret"></b></a>
+            <li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle"><img width="23" height="23" alt="" src="style/imgs/avatar.jpg"><span>{{user.username}} </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="user_profile.html">Profile</a><i class="icon-user"></i></li>
                 <li><a href="user_profile.html">Settings</a><i class="icon-cog"></i></li>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="title row">
-        <h1>{{user.username}} Organizations</h1>
+        <h1>{{user.username}}'s Organizations</h1>
       </div>
       <div ng-controller="userOrgController as userOrgCtrl" class="orgArea row">
         <div ng-repeat="org in orgs" class="org">
