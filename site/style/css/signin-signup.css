@@ -1,0 +1,59 @@
+html, body {
+  font-family: "Muli"; }
+
+.container-fluid {
+  background: url("../imgs/backgrounds/bg-signup.jpg");
+  height: 100vh;
+  width: auto;
+  overflow: hidden; }
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%); }
+  .form-signin .form-top-option {
+    display: inline-block;
+    color: white;
+    background-color: transparent;
+    font-size: 18px;
+    margin-right: 30px;
+    margin-bottom: 10px; }
+    .form-signin .form-top-option .current {
+      border-bottom: solid #1762EE; }
+    .form-signin .form-top-option a {
+      color: rgba(255, 255, 255, 0.5);
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      border-bottom: 0px #1762EE; }
+      .form-signin .form-top-option a:hover {
+        border-bottom: solid #1762EE; }
+  .form-signin h2 {
+    color: white;
+    text-align: center; }
+  .form-signin .form-control-title {
+    color: white;
+    margin: 20px 0px 4px 12px;
+    font-size: 16px; }
+  .form-signin .form-control {
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: transparent; }
+    .form-signin .form-control:focus {
+      border-color: white; }
+  .form-signin .btn {
+    border-radius: 50px;
+    height: 30px;
+    line-height: 8px;
+    font-size: 14px;
+    background-color: #1762EE; }
+  .form-signin .checkbox {
+    color: white;
+    padding: 10px; }
+
+/*# sourceMappingURL=signin-signup.css.map */

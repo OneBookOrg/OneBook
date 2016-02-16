@@ -1,0 +1,68 @@
+html, body {
+  font-family: "Muli";
+  font-size: 62.5%; }
+
+h1, h2, h3, span {
+  font-family: "Muli"; }
+
+body {
+  background: url("../imgs/backgrounds/bg-signup.jpg") fixed;
+  height: 100vh;
+  width: auto;
+  overflow-x: hidden; }
+
+.title {
+  margin-top: 2%;
+  margin-bottom: 5%;
+  text-align: center;
+  color: #f7f7f7; }
+
+.orgArea {
+  padding-bottom: 10%;
+  text-align: center; }
+
+.org {
+  padding: 15px;
+  display: inline-block; }
+
+.orgContent {
+  width: 300px;
+  height: 300px;
+  padding-top: 85px;
+  margin: auto auto;
+  text-align: center;
+  color: #f7f7f7;
+  background-color: rgba(247, 247, 247, 0.1);
+  border-radius: 20px;
+  border: 2px solid transparent; }
+  .orgContent:hover {
+    border: 2px solid #f7f7f7;
+    transition: all 0.2s ease-in-out; }
+
+.member {
+  margin-top: 20px;
+  float: right;
+  background-color: rgba(247, 247, 247, 0.1);
+  color: #f7f7f7;
+  margin-right: 50px;
+  width: 250px;
+  border-radius: 20px; }
+  .member .open > a, .member .nav .open > a:hover, .member .nav .open > a:focus, .member .nav .open > a:visited, .member .nav .open > a:active {
+    background-color: rgba(247, 247, 247, 0.1);
+    border-radius: 20px; }
+  .member a.dropdown-toggle:hover, .member a.dropdown-toggle:visited, .member a.dropdown-toggle:active, .member a.dropdown-toggle:focus {
+    background-color: rgba(247, 247, 247, 0.1);
+    border-radius: 20px; }
+  .member .dropdown-menu {
+    background-color: rgba(247, 247, 247, 0.1);
+    border-radius: 10px; }
+    .member .dropdown-menu li a {
+      color: #f7f7f7; }
+      .member .dropdown-menu li a:hover {
+        background-color: #1762EE;
+        border-radius: 20px; }
+  .member .caret {
+    border-top-color: #1762EE;
+    border-bottom-color: #1762EE; }
+
+/*# sourceMappingURL=dashboard-style.css.map */

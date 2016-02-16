@@ -1,0 +1,36 @@
+doctype html
+html(lang='en')
+    head
+        title OneBook
+        link(href='lib/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+        link(href='style/css/signin-signup.css', rel='stylesheet')
+        link(href='style/imgs/meta_icons/OB.ico', rel='icon')
+        link(href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css')
+        script(src='js/signup.js' type='text/javascript')
+        script(src='//code.jquery.com/jquery-1.12.0.min.js')
+        script(src='//code.jquery.com/jquery-migrate-1.2.1.min.js')
+
+    body
+        div.container-fluid
+            form(action='/register', method='POST').form-signin
+                h3.form-top-option
+                    a(onclick='goBack()') SIGN IN
+                h3.form-top-option SIGN UP
+                h2.form-signin-heading Please Sign Up
+                h4.form-control-title USERNAME
+                input(type='username', required, autofocus)#inputUsername.form-control 
+                h4.form-control-title PHONE NUMBER
+                input(type='phoneNum', required)#inputPhoneNum.form-control
+                h4.form-control-title PASSWORD
+                input(type='password', required)#inputPassword.form-control
+                div.checkbox
+                    label
+                        input(type='checkbox', value='remember-me')
+                        | Remember me
+
+                input(type='button', value='SIGN UP')#signupSubmit.btn.btn-lg.btn-primary.btn-block
+        
+        script.
+            function goBack() {
+                window.history.back();
+            }

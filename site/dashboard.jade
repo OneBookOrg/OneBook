@@ -1,0 +1,43 @@
+doctype html
+html(ng-app='userOrgs')
+    title One Book Org
+
+    link(href="lib/bootstrap/css/bootstrap.css" media="all" rel="stylesheet" type="text/css")
+    link(href="style/css/dashboard-style.css", rel="stylesheet", type="text/css")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js" type="text/javascript")
+    link(href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css')
+    link(href='style/imgs/meta_icons/OB.ico', rel='icon')
+    script(src='http://code.jquery.com/jquery-1.12.0.min.js')
+    script(src='http://code.jquery.com/jquery-migrate-1.2.1.min.js')
+    script(src="lib/bootstrap/js/bootstrap.min.js")
+
+    body
+        div.container
+            div.nav.row
+                div.member
+                    ul.nav
+                        li.dropdown
+                            a(data-toggle='dropdown', href='#').dropdown-toggle
+                                img(width="23" height="23" alt="" src="style/imgs/avatar.jpg")
+                                span({{user.username}}).user-name
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='user_profile.html') Profile
+                                    i.icon-user
+                                li
+                                    a(href='user_profile.html') Settings
+                                    i.icon-cog
+                                li.divider
+                                li    
+                                    a(href='index.html' ng-click='userProfCtrl.signOut()') Sign Out
+                                    i.icon-signout
+
+
+            div.title.row
+                h1 Organizations
+            div(ng-controller='userOrgController as userOrgCtrl').orgArea.row
+                div(ng-repeat='org in orgs').org
+                    div.orgContent
+                        h3 {{org.orgname}}
+                        h3 {{org.members.length}} Members

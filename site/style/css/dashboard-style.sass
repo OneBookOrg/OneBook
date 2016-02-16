@@ -1,0 +1,73 @@
+$off-white: rgb(247,247,247)
+$blue-color: #1762EE
+
+html, body
+    font-family: 'Muli'
+    font-size: 62.5%
+
+h1, h2, h3, span
+    font-family: 'Muli'
+
+body
+    background: url('../imgs/backgrounds/bg-signup.jpg') fixed
+    height: 100vh
+    width: auto
+    overflow-x: hidden
+
+.title
+    margin-top: 2%
+    margin-bottom: 5%
+    text-align: center
+    color: $off-white
+
+.orgArea
+    padding-bottom: 10%
+    text-align: center
+
+.org
+    padding: 15px
+    display: inline-block
+
+.orgContent
+    width: 300px
+    height: 300px
+    padding-top: 85px
+    margin: auto auto
+    text-align: center
+    color: $off-white
+    background-color: transparentize($off-white, .9)
+    border-radius: 20px
+    border: 2px solid rgba(0,0,0,0)
+
+    &:hover
+        border: 2px solid $off-white
+        transition: all 0.2s ease-in-out
+
+.member
+    margin-top: 20px
+    float: right
+    background-color: transparentize($off-white, .9)
+    color: $off-white
+    margin-right: 50px
+    width: 250px
+    border-radius: 20px
+    .open > a, .nav .open > a:hover, .nav .open > a:focus, .nav .open > a:visited, .nav .open > a:active
+        background-color: transparentize($off-white, .9)
+        border-radius: 20px
+
+    a.dropdown-toggle:hover, a.dropdown-toggle:visited, a.dropdown-toggle:active, a.dropdown-toggle:focus
+        background-color: transparentize($off-white, .9)
+        border-radius: 20px
+
+    .dropdown-menu
+        background-color: transparentize($off-white, .9)
+        border-radius: 10px
+        li
+            a
+                color: $off-white
+                &:hover
+                    background-color: $blue-color
+                    border-radius: 20px
+    .caret
+        border-top-color: $blue-color
+        border-bottom-color: $blue-color

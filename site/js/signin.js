@@ -5,7 +5,7 @@ $(document).ready(function() {
 
        $.post( "login", {username : $("#username").val(), password : $("#password").val()}, function(data){
           if(data.success){
-            window.location.replace("/blank.html");
+            window.location.replace("/dashboard.html");
           }
           else{
             addError(); 
