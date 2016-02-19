@@ -1,0 +1,8 @@
+User Profile Update Page
+
+Form:
+	Username field : has the username (locked, cannot change)
+	phone number field : has the phone number (can change)
+	Email field : optional
+	class field(s): (all optional) only accept classes in the format of XXX 1234, and a optional description field (Physics II, Comp Arch, etc.)
+	Start with just one class blank, a plus button to add more classes if they want.
