@@ -20,7 +20,7 @@ html(ng-app='userOrgs')
                         li.dropdown
                             a(data-toggle='dropdown', href='#').dropdown-toggle
                                 img(width="23" height="23" alt="" src="style/imgs/avatar.jpg")
-                                span {{user.username}} 
+                                span {{user.display_name}} 
                                 b.caret
                             ul.dropdown-menu
                                 li
@@ -36,7 +36,7 @@ html(ng-app='userOrgs')
 
 
             div.title.row
-                h1 {{user.username}}'s Organizations
+                h1 {{user.display_name}}'s Organizations
             div(ng-controller='userOrgController as userOrgCtrl').orgArea.row
                 div(ng-repeat='org in orgs').org
                     div.orgContent
